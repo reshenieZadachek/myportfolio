@@ -14,9 +14,9 @@ const getRepositoryName = () => {
     // For GitHub Pages, base should be the repository name (e.g., /portfolio/)
     const repositoryUrl = process.env.npm_package_repository_url || '';
     const repositoryName = repositoryUrl.split('/').pop()?.replace('.git', '');
-    return process.env.NODE_ENV === 'production' ? `/${repositoryName || 'portfolio'}/` : '/';
+    return process.env.NODE_ENV === 'production' ? `/${repositoryName || 'myportfolio'}/` : '/';
   } catch (e) {
-    return '/portfolio/'; // Default fallback if repository name can't be determined
+    return '/myportfolio/'; // Default fallback if repository name can't be determined
   }
 };
 
