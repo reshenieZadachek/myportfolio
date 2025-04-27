@@ -8,7 +8,20 @@ import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// Get repository name from package.json for GitHub Pages
+const getRepositoryName = () => {
+  try {
+    // For GitHub Pages, base should be the repository name (e.g., /portfolio/)
+    const repositoryUrl = process.env.npm_package_repository_url || '';
+    const repositoryName = repositoryUrl.split('/').pop()?.replace('.git', '');
+    return process.env.NODE_ENV === 'production' ? `/${repositoryName || 'portfolio'}/` : '/';
+  } catch (e) {
+    return '/portfolio/'; // Default fallback if repository name can't be determined
+  }
+};
+
 export default defineConfig({
+  base: process.env.GITHUB_PAGES === 'true' ? getRepositoryName() : '/',
   plugins: [
     react(),
     runtimeErrorOverlay(),
