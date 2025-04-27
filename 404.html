@@ -6,18 +6,12 @@
   <script type="text/javascript">
     // Перенаправление для GitHub Pages
     (function() {
-      // Получаем текущий путь и хост
-      var pathSegmentsToKeep = 1;
-      var l = window.location;
-      
-      // Сохраняем оригинальное расположение в sessionStorage
-      sessionStorage.redirect = l.pathname + l.search + l.hash;
+      // Сохраняем текущий путь в sessionStorage
+      var pathname = window.location.pathname;
+      sessionStorage.redirect = pathname + window.location.search + window.location.hash;
       
       // Перенаправляем на основную страницу
-      l.replace(
-        l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-        '/myportfolio/'
-      );
+      window.location.replace('/myportfolio/');
     })();
   </script>
 </head>
