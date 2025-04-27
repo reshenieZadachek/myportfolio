@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+    <title>Portfolio | Fullstack Developer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Скрипт для обработки перенаправлений с 404.html -->
+    <script type="text/javascript">
+      // Единая точка входа для GitHub Pages
+      (function() {
+        // Проверка, есть ли сохраненный редирект
+        var redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        
+        if (redirect && redirect !== location.href) {
+          // Если был редирект с другого URL, восстанавливаем правильный путь
+          // Убираем /myportfolio из пути при обработке внутренних URL
+          var basePath = '/myportfolio';
+          if (redirect.indexOf(basePath) === 0) {
+            redirect = redirect.substr(basePath.length) || '/';
+          }
+          
+          // Обновляем историю браузера
+          history.replaceState(null, null, redirect);
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- Скрипты будут добавлены здесь -->
+  </body>
+</html> 
