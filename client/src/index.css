@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+}
+
+/* Стили для отображения резервного значения при ошибке загрузки изображения */
+.image-fallback {
+  background-image: linear-gradient(to bottom right, rgba(139, 92, 246, 0.1), rgba(139, 92, 246, 0.05));
+}
+
+.image-fallback-icon {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.image-fallback .image-fallback-icon {
+  opacity: 1;
+}

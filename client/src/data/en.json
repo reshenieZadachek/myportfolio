@@ -1,0 +1,308 @@
+{
+  "meta": {
+    "title": "Portfolio | Fullstack Developer",
+    "titleSuffix": "Fullstack Developer Portfolio"
+  },
+  "nav": {
+    "about": "About",
+    "skills": "Skills",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "resume": {
+    "download": "Resume",
+    "downloadAlert": "Resume download functionality would be implemented in a real application."
+  },
+  "hero": {
+    "greeting": "Hello, I'm a",
+    "title": {
+      "first": "Fullstack",
+      "highlight": "Developer"
+    },
+    "description": "I create modern web applications with clean code and seamless user experiences, from responsive frontends to scalable backend systems.",
+    "cta": {
+      "primary": "View My Work",
+      "secondary": "Contact Me"
+    }
+  },
+  "about": {
+    "title": {
+      "first": "About",
+      "highlight": "Me"
+    },
+    "subtitle": "Fullstack Developer",
+    "yearsExp": "Years Experience",
+    "paragraphs": {
+      "first": "I'm a passionate fullstack developer with expertise in building modern web applications from concept to deployment. I specialize in creating clean, efficient, and scalable solutions that solve real business problems.",
+      "second": "My approach combines technical excellence with a deep understanding of user experience, ensuring that the applications I build are not only functional but also intuitive and enjoyable to use. I'm constantly learning and adapting to new technologies to stay at the forefront of web development."
+    },
+    "stats": {
+      "projects": "Projects Completed",
+      "clients": "Happy Clients",
+      "experience": "Years Experience"
+    },
+    "cta": {
+      "hire": "Hire Me",
+      "cv": "Download CV"
+    }
+  },
+  "skills": {
+    "title": {
+      "first": "My",
+      "highlight": "Skills"
+    },
+    "description": "I've developed expertise across the full development stack, allowing me to build complete solutions from start to finish.",
+    "categories": {
+      "frontend": {
+        "title": "Frontend",
+        "skills": ["HTML5", "CSS3", "JavaScript (ES6+)", "React", "Styled-components"]
+      },
+      "state": {
+        "title": "State Management",
+        "skills": ["Redux", "MobX", "Context API", "React Query"]
+      },
+      "backend": {
+        "title": "Backend",
+        "skills": ["Node.js", "Express", "Sequelize", "PostgreSQL"]
+      },
+      "devops": {
+        "title": "Tools & DevOps",
+        "skills": ["Webpack", "Git", "Nginx", "Amazon S3"]
+      }
+    },
+    "additional": {
+      "title": "Additional Expertise",
+      "telegram": "Telegram Bot Development",
+      "crm": "CRM System Development",
+      "admin": "Admin Panel Development",
+      "api": "API & Security Implementation",
+      "deployment": "Deployment & Maintenance",
+      "websocket": "WebSocket Implementation"
+    }
+  },
+  "projects": {
+    "title": {
+      "first": "My",
+      "highlight": "Projects"
+    },
+    "description": "Here are some of my recent projects that showcase my skills and expertise in full-stack development.",
+    "viewAll": "View All Projects",
+    "viewDetails": "View Details",
+    "liveDemo": "Live Demo",
+    "viewSource": "View Source",
+    "details": "Details",
+    "overview": "Project Overview",
+    "goals": "Project Goals",
+    "challenges": "Challenges",
+    "solution": "Solution",
+    "projectDetails": "Project Details",
+    "technologies": "Technologies",
+    "timeline": "Timeline",
+    "backToProjects": "Back to Projects",
+    "notFound": "Project Not Found",
+    "invalidId": "The requested project could not be found.",
+    "featured": "Featured Projects",
+    "allProjects": "All Projects",
+    "items": [
+      {
+        "id": 1,
+        "title": "Internet Provider Website",
+        "shortDescription": "Customer-facing portal for an internet service provider",
+        "description": "A responsive website for an internet service provider with service browsing, account management, and online payment functionality.",
+        "image": "https://18a08574-5171-4f64-8962-6f8a13a0cf01.selstorage.ru/myPortfolio%2Fspecialist%2FuserMoygig.png",
+        "technologies": ["React", "Next.js", "Node.js", "MySQL"],
+        "liveUrl": "https://user.moygig.ru",
+        "githubUrl": "",
+        "goals": [
+          "Create an intuitive interface for customers to manage their internet services",
+          "Implement secure online payment processing",
+          "Build a responsive design for mobile and desktop users",
+          "Integrate with the provider's backend systems"
+        ],
+        "challenges": "Integrating with legacy backend systems while providing a modern user experience was challenging. Ensuring security for payment processing and customer data was also a major consideration.",
+        "solution": "I developed a Next.js application with server-side rendering for optimal performance and SEO. The site integrates with the provider's API for real-time account information and uses a secure payment gateway for transactions.",
+        "timeline": "4 months (2022)"
+      },
+      {
+        "id": 2,
+        "title": "ISP CRM System",
+        "shortDescription": "Comprehensive admin dashboard for internet service provider management",
+        "description": "An internal CRM system for internet service provider staff to manage customers, services, billing, and technical support.",
+        "image": "https://18a08574-5171-4f64-8962-6f8a13a0cf01.selstorage.ru/myPortfolio%2Fspecialist%2FadminMoygig.png",
+        "technologies": ["React", "Redux", "Express.js", "MySQL"],
+        "liveUrl": "https://admin.moygig.ru",
+        "githubUrl": "",
+        "goals": [
+          "Build a comprehensive tool for customer management",
+          "Create modules for billing, service provisioning, and support ticketing",
+          "Implement role-based access control for different staff roles",
+          "Provide analytics and reporting dashboards"
+        ],
+        "challenges": "Designing a system that could handle the complex relationships between customers, services, and billing while remaining intuitive for staff was challenging. The system needed to work with existing databases and infrastructure.",
+        "solution": "I developed a modular React application with Redux for state management and a custom design system for consistent UI. The backend uses Express with stored procedures for complex business logic and integrates with existing systems via APIs.",
+        "timeline": "6 months (2022)"
+      },
+      {
+        "id": 3,
+        "title": "Shooting Gallery Website",
+        "shortDescription": "E-commerce site for a shooting gallery equipment manufacturer",
+        "description": "A product showcase and e-commerce site for a company specializing in shooting gallery equipment with catalog browsing and inquiry functionality.",
+        "image": "https://18a08574-5171-4f64-8962-6f8a13a0cf01.selstorage.ru/myPortfolio%2Fspecialist%2Ftirpriz.png",
+        "technologies": ["Vue.js", "Nuxt.js", "Express", "MongoDB"],
+        "liveUrl": "https://tirpriz.ru",
+        "githubUrl": "",
+        "goals": [
+          "Create an attractive showcase for shooting gallery products",
+          "Implement an intuitive product catalog with filtering",
+          "Build lead generation forms for business inquiries",
+          "Ensure mobile responsiveness for all pages"
+        ],
+        "challenges": "Presenting complex technical products in an accessible way required careful UX design. The site needed to cater to both individual customers and business clients with different needs.",
+        "solution": "I built a Nuxt.js application with static generation for fast loading speeds. The site features interactive product displays, detailed specifications, and a custom inquiry system integrated with the company's CRM.",
+        "timeline": "3 months (2023)"
+      },
+      {
+        "id": 4,
+        "title": "Shooting Gallery CRM",
+        "shortDescription": "Internal management system for equipment orders and production",
+        "description": "A comprehensive system for managing orders, inventory, production, and customer relationships for a shooting gallery equipment manufacturer.",
+        "image": "https://18a08574-5171-4f64-8962-6f8a13a0cf01.selstorage.ru/myPortfolio%2Fspecialist%2FadminTirpriz.png",
+        "technologies": ["Vue.js", "Vuex", "Node.js", "MongoDB"],
+        "liveUrl": "https://admin.tirpriz.ru",
+        "githubUrl": "",
+        "goals": [
+          "Create a system to track orders from inquiry to delivery",
+          "Implement inventory and production management tools",
+          "Build customer relationship tracking features",
+          "Design reporting and analytics dashboards"
+        ],
+        "challenges": "Managing the complex manufacturing process with variable lead times and custom orders required a flexible system design. Integrating with existing production workflows was also challenging.",
+        "solution": "I developed a Vue.js application with Vuex for state management, featuring a modular dashboard design. The system includes tools for order tracking, production scheduling, and customer communication, all integrated with MongoDB for flexible data storage.",
+        "timeline": "5 months (2023)"
+      },
+      {
+        "id": 5,
+        "title": "Shooting Gallery Management App",
+        "shortDescription": "Mobile application for managing shooting gallery operations",
+        "description": "A companion application for shooting gallery operators to manage equipment settings, track usage statistics, and troubleshoot common issues.",
+        "image": "https://18a08574-5171-4f64-8962-6f8a13a0cf01.selstorage.ru/myPortfolio%2Fspecialist%2FtirprizApp.png",
+        "technologies": ["React Native", "Redux", "Node.js", "Firebase"],
+        "liveUrl": "",
+        "githubUrl": "",
+        "goals": [
+          "Create a user-friendly mobile interface for equipment control",
+          "Implement remote diagnostics and troubleshooting tools",
+          "Build usage analytics and reporting features",
+          "Ensure offline functionality for areas with poor connectivity"
+        ],
+        "challenges": "Designing an interface that worked well across different device sizes while providing complex control functions was challenging. Ensuring reliable operation with intermittent internet connectivity was also a major consideration.",
+        "solution": "I created a React Native application with an offline-first architecture, using Firebase for data synchronization when online. The app includes an intuitive control panel for equipment settings, diagnostic wizards for troubleshooting, and a comprehensive reporting system.",
+        "timeline": "4 months (2023)"
+      },
+      {
+        "id": 6,
+        "title": "Berezovy City News Portal",
+        "shortDescription": "Local news site for Berezovy city, Irkutsk",
+        "description": "A modern news portal for the local community featuring articles, event calendars, classifieds, and community forums.",
+        "image": "https://18a08574-5171-4f64-8962-6f8a13a0cf01.selstorage.ru/myPortfolio%2Fspecialist%2FberezovyNews.png",
+        "technologies": ["WordPress", "PHP", "MySQL", "jQuery"],
+        "liveUrl": "",
+        "githubUrl": "",
+        "goals": [
+          "Create an accessible news platform for local residents",
+          "Implement content management for editorial staff",
+          "Build community features such as forums and classifieds",
+          "Design a responsive layout for all devices"
+        ],
+        "challenges": "Balancing performance with rich content features on a limited hosting budget was challenging. Creating an intuitive admin interface for non-technical staff required careful UX design.",
+        "solution": "I configured a WordPress installation with performance optimizations and a tailored admin interface. The site includes custom post types for different content categories, a responsive theme with local branding, and community features such as forums and classifieds.",
+        "timeline": "2 months (2021)"
+      },
+      {
+        "id": 7,
+        "title": "BashGAU Institute Telegram Bot",
+        "shortDescription": "Educational assistant bot for university students",
+        "description": "A comprehensive Telegram bot providing students with schedule information, club announcements, news updates, and library resources.",
+        "image": "https://18a08574-5171-4f64-8962-6f8a13a0cf01.selstorage.ru/myPortfolio%2Fspecialist%2FbashgauBot.png",
+        "technologies": ["Node.js", "Telegram Bot API", "MongoDB", "Express"],
+        "liveUrl": "",
+        "githubUrl": "",
+        "goals": [
+          "Create an accessible information source for students",
+          "Implement schedule lookup and notifications",
+          "Build news and club announcement features",
+          "Provide library catalog search functionality"
+        ],
+        "challenges": "Designing a conversational interface that remained intuitive while providing complex functionality was challenging. Integrating with various university systems required careful API design.",
+        "solution": "I developed a Node.js application using the Telegram Bot API with a conversational UI featuring buttons and inline keyboards. The bot integrates with university databases for schedule and library information, and includes a custom CMS for staff to publish announcements and news.",
+        "timeline": "3 months (2022)"
+      },
+      {
+        "id": 8,
+        "title": "Electoral District Website",
+        "shortDescription": "Information portal for electoral district #8 in Tomsk",
+        "description": "A website for a local deputy featuring district information, representative activities, contact options, and community resources.",
+        "image": "https://18a08574-5171-4f64-8962-6f8a13a0cf01.selstorage.ru/myPortfolio%2Fspecialist%2FelectorialDistrict.png",
+        "technologies": ["React", "Gatsby", "Node.js", "Contentful"],
+        "liveUrl": "",
+        "githubUrl": "",
+        "goals": [
+          "Create an informative platform for district residents",
+          "Implement sections for deputy activities and initiatives",
+          "Build contact and feedback mechanisms",
+          "Design a clean, accessible interface for all users"
+        ],
+        "challenges": "Presenting complex civic information in an engaging and accessible way was challenging. Creating a system that non-technical staff could easily update also required careful design.",
+        "solution": "I built a Gatsby static site with React components for optimal performance and SEO. The site integrates with Contentful CMS for easy content management and includes interactive district maps, event calendars, and secure contact forms.",
+        "timeline": "2 months (2023)"
+      }
+    ]
+  },
+  "contact": {
+    "title": {
+      "first": "Get In",
+      "highlight": "Touch"
+    },
+    "description": "Have a project in mind or want to discuss potential opportunities? Don't hesitate to reach out!",
+    "info": {
+      "title": "Contact Information",
+      "email": {
+        "label": "Email"
+      },
+      "location": {
+        "label": "Location",
+        "value": "Moscow, Russia"
+      }
+    },
+    "social": {
+      "title": "Connect With Me"
+    },
+    "form": {
+      "title": "Send Me a Message",
+      "fields": {
+        "name": "Your Name",
+        "email": "Your Email",
+        "message": "Project Description"
+      },
+      "placeholders": {
+        "name": "John Doe",
+        "email": "john@example.com",
+        "message": "Tell me about your project..."
+      },
+      "submit": "Send Message",
+      "sending": "Sending...",
+      "success": {
+        "title": "Message Sent!",
+        "message": "Your message has been sent successfully. I'll get back to you soon."
+      },
+      "error": {
+        "title": "Failed to Send",
+        "message": "There was an error sending your message. Please try again later."
+      }
+    }
+  },
+  "footer": {
+    "role": "Fullstack Developer",
+    "copyright": "Developer Portfolio. All rights reserved."
+  }
+}
