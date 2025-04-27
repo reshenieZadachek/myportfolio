@@ -17,9 +17,8 @@ const Footer = () => {
 
   // Social links
   const socialLinks = [
-    { icon: <FaTelegram />, href: "https://t.me/username", label: "Telegram" },
-    { icon: <FaGithub />, href: "https://github.com/username", label: "GitHub" },
-    { icon: <FaLinkedinIn />, href: "https://linkedin.com/in/username", label: "LinkedIn" }
+    { icon: <FaTelegram />, href: "https://t.me/DevWebFullstack", label: "Telegram" },
+    { icon: <FaGithub />, href: "https://github.com/reshenieZadachek", label: "GitHub" },
   ];
 
   return (

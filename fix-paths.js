@@ -17,6 +17,13 @@ console.log('Fixing asset paths...');
 htmlContent = htmlContent.replace(/src="\/assets\//g, 'src="/myportfolio/assets/');
 htmlContent = htmlContent.replace(/href="\/assets\//g, 'href="/myportfolio/assets/');
 
+// Добавление тега <base> для корректной работы роутера
+console.log('Adding base tag...');
+htmlContent = htmlContent.replace(
+  '<meta charset="UTF-8" />',
+  '<meta charset="UTF-8" />\n    <base href="/myportfolio/" />'
+);
+
 // Запись обновленного HTML файла
 console.log('Writing updated file...');
 fs.writeFileSync(htmlFilePath, htmlContent);

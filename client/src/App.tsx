@@ -31,11 +31,17 @@ function Router() {
       // Обработка изменения пути
       const handleLocationChange = () => {
         let path = window.location.pathname;
-        // Если путь содержит базовый путь (например, /portfolio/), 
-        // удаляем его для внутреннего роутера
-        if (basePath !== '/' && path.startsWith(basePath)) {
-          path = path.substring(basePath.length - 1); // -1 чтобы оставить начальный /
+        
+        // Проверяем, есть ли у нас базовый путь и находимся ли мы на GitHub Pages
+        const isGitHubPages = window.location.hostname.includes('github.io');
+        const effectiveBasePath = isGitHubPages ? '/myportfolio' : '';
+        
+        // Если путь содержит базовый путь, удаляем его для внутреннего роутера
+        if (effectiveBasePath && path.startsWith(effectiveBasePath)) {
+          path = path.substring(effectiveBasePath.length) || '/';
         }
+        
+        console.log('Current path:', path); // Для отладки
         setLocation(path);
       };
       
@@ -52,9 +58,12 @@ function Router() {
     
     // Функция для перехода на новый путь
     const navigate = (to: string, options?: { replace?: boolean }) => {
+      const isGitHubPages = window.location.hostname.includes('github.io');
+      const effectiveBasePath = isGitHubPages ? '/myportfolio' : '';
+      
       // Для навигации добавляем базовый путь
-      const newPath = basePath !== '/' 
-        ? `${basePath.endsWith('/') ? basePath.slice(0, -1) : basePath}${to}` 
+      const newPath = effectiveBasePath 
+        ? `${effectiveBasePath}${to === '/' ? '' : to}` 
         : to;
       
       if (options?.replace) {

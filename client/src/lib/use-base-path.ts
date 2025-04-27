@@ -3,8 +3,13 @@
  * Для GitHub Pages нужно учитывать базовый путь
  */
 export default function useBasePath() {
-  // Определяем базовый путь из метатега base, который устанавливает Vite
-  const basePath = document.querySelector('base')?.getAttribute('href') || '/';
+  // Определяем, находимся ли мы на GitHub Pages
+  const isGitHubPages = window.location.hostname.includes('github.io');
+  
+  // Определяем базовый путь
+  // Сначала проверяем тег base, если его нет, то используем значение по умолчанию
+  const basePathFromTag = document.querySelector('base')?.getAttribute('href');
+  const basePath = basePathFromTag || (isGitHubPages ? '/myportfolio/' : '/');
   
   /**
    * Создаёт корректный путь с учётом базового пути
@@ -21,6 +26,7 @@ export default function useBasePath() {
 
   return {
     basePath,
-    getPath
+    getPath,
+    isGitHubPages
   };
 } 
