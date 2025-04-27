@@ -1,6 +1,6 @@
 import { Link } from "wouter";
 import { useTranslation } from "react-i18next";
-import { FaTelegram, FaGithub, FaLinkedinIn } from "react-icons/fa";
+import { FaTelegram, FaGithub, FaEnvelope, FaLinkedinIn } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 const Footer = () => {
@@ -19,6 +19,7 @@ const Footer = () => {
   const socialLinks = [
     { icon: <FaTelegram />, href: "https://t.me/DevWebFullstack", label: "Telegram" },
     { icon: <FaGithub />, href: "https://github.com/reshenieZadachek", label: "GitHub" },
+    { icon: <FaEnvelope />, href: "mailto:dv@example.com", label: "Email" },
   ];
 
   return (

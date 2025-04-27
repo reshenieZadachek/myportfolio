@@ -9,6 +9,7 @@ import {
   ArrowRight, ArrowLeft, ChevronRight, Tags, 
   PanelTopClose, LayoutList, ArrowUpRight
 } from "lucide-react";
+import useBasePath from "../lib/use-base-path";
 
 // Custom animated tab interface
 interface ProjectFilterProps {
@@ -113,6 +114,11 @@ interface FeaturedProjectProps {
 
 const FeaturedProject = ({ project, index }: FeaturedProjectProps) => {
   const { t } = useTranslation();
+  const { getPath } = useBasePath();
+  
+  const handleDetailsClick = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
   
   return (
     <motion.div 
@@ -228,8 +234,8 @@ const FeaturedProject = ({ project, index }: FeaturedProjectProps) => {
           transition={{ duration: 0.4, delay: 0.7 }}
           viewport={{ once: true }}
         >
-          <Button asChild className="group">
-            <Link href={`/project/${project.id}`}>
+          <Button asChild className="group" onClick={handleDetailsClick}>
+            <Link href={getPath(`/project/${project.id}`)}>
               {t("projects.details")}
               <ChevronRight className="ml-1 transition-transform group-hover:translate-x-1" size={16} />
             </Link>
