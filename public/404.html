@@ -10,19 +10,19 @@
       var pathSegmentsToKeep = 1;
       var l = window.location;
       
-      // Сохраняем оригинальное расположение
+      // Сохраняем оригинальное расположение в sessionStorage
+      sessionStorage.redirect = l.pathname + l.search + l.hash;
+      
+      // Перенаправляем на основную страницу
       l.replace(
         l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-        l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
-        l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
-        (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
-        l.hash
+        '/myportfolio/'
       );
     })();
   </script>
 </head>
 <body>
   <h1>Перенаправление...</h1>
-  <p>Если вы не были перенаправлены автоматически, <a href="/">нажмите здесь</a>.</p>
+  <p>Если вы не были перенаправлены автоматически, <a href="/myportfolio/">нажмите здесь</a>.</p>
 </body>
 </html> 
