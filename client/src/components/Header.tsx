@@ -5,10 +5,12 @@ import { useTranslation } from 'react-i18next';
 import LanguageToggle from "./LanguageToggle";
 import { Button } from "@/components/ui/button";
 import { Download, Menu, X } from "lucide-react";
+import useBasePath from "../lib/use-base-path";
 
 const Header = () => {
   const [location] = useLocation();
   const { t } = useTranslation();
+  const { getPath } = useBasePath();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
@@ -62,7 +64,7 @@ const Header = () => {
     >
       <div className="container mx-auto px-6 py-4">
         <nav className="flex justify-between items-center">
-          <Link href="/" className="text-xl font-bold text-foreground">
+          <Link href={getPath("/")} className="text-xl font-bold text-foreground">
             <span className="text-primary">DV</span>_Dev
           </Link>
           

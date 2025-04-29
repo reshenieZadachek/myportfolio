@@ -20,25 +20,21 @@ type LocationHook = () => [
 ];
 
 function Router() {
-  const { basePath } = useBasePath();
-  
   // Создаем кастомную реализацию маршрутизации для Wouter
   // с учетом базового пути для GitHub Pages
   const useBasedLocation: LocationHook = () => {
     const [location, setLocation] = useState(window.location.pathname);
+    const isGitHubPages = window.location.hostname.includes('github.io');
+    const basePath = isGitHubPages ? '/myportfolio' : '';
     
     useEffect(() => {
       // Обработка изменения пути
       const handleLocationChange = () => {
         let path = window.location.pathname;
         
-        // Проверяем, есть ли у нас базовый путь и находимся ли мы на GitHub Pages
-        const isGitHubPages = window.location.hostname.includes('github.io');
-        const effectiveBasePath = isGitHubPages ? '/myportfolio' : '';
-        
         // Если путь содержит базовый путь, удаляем его для внутреннего роутера
-        if (effectiveBasePath && path.startsWith(effectiveBasePath)) {
-          path = path.substring(effectiveBasePath.length) || '/';
+        if (isGitHubPages && path.startsWith(basePath)) {
+          path = path.substring(basePath.length) || '/';
         }
         
         console.log('Current path:', path); // Для отладки
@@ -60,13 +56,14 @@ function Router() {
     
     // Функция для перехода на новый путь
     const navigate = (to: string, options?: { replace?: boolean }) => {
-      const isGitHubPages = window.location.hostname.includes('github.io');
-      const effectiveBasePath = isGitHubPages ? '/myportfolio' : '';
-      
       // Для навигации добавляем базовый путь
-      const newPath = effectiveBasePath 
-        ? `${effectiveBasePath}${to === '/' ? '' : to}` 
-        : to;
+      // Сначала проверяем, что путь не содержит уже basePath
+      let cleanTo = to;
+      if (isGitHubPages) {
+        cleanTo = to.replace(/^\/myportfolio\//, '/').replace(/^\/myportfolio/, '/');
+      }
+      
+      const newPath = isGitHubPages ? `${basePath}${cleanTo}` : cleanTo;
       
       if (options?.replace) {
         window.history.replaceState(null, '', newPath);
@@ -77,7 +74,7 @@ function Router() {
       // Уведомляем о смене маршрута через кастомное событие
       window.dispatchEvent(new Event('locationchange'));
       
-      setLocation(to); // Для внутреннего состояния используем оригинальный путь
+      setLocation(cleanTo); // Для внутреннего состояния используем чистый путь
     };
     
     return [location, navigate];

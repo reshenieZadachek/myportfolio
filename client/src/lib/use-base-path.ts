@@ -1,44 +1,49 @@
 /**
- * Хук для определения базового пути для роутинга
- * Для GitHub Pages нужно учитывать базовый путь
+ * Хук для получения базового пути для маршрутизации
+ * Если приложение запущено на GitHub Pages, базовый путь - '/myportfolio/'
+ * В противном случае - '/'
  */
-export default function useBasePath() {
-  // Определяем, находимся ли мы на GitHub Pages
+function useBasePath() {
+  // Проверяем, запущено ли приложение на GitHub Pages
   const isGitHubPages = window.location.hostname.includes('github.io');
   
-  // Определяем базовый путь
-  // Сначала проверяем тег base, если его нет, то используем значение по умолчанию
-  const basePathFromTag = document.querySelector('base')?.getAttribute('href');
-  const basePath = basePathFromTag || (isGitHubPages ? '/myportfolio/' : '/');
+  // Устанавливаем базовый путь
+  const basePath = isGitHubPages ? '/myportfolio/' : '/';
   
   /**
-   * Создаёт корректный путь с учётом базового пути
-   * @param path путь относительно корня приложения
-   * @returns полный путь с учётом базового пути
+   * Функция для получения полного пути с учетом базового пути
+   * @param path - Путь, относительный к базовому пути
+   * @returns Полный путь с учетом базового пути
    */
   const getPath = (path: string): string => {
-    // Если маршрут содержит якорь (/#projects), обрабатываем его особым образом
-    if (path.includes('#')) {
-      const [urlPart, anchorPart] = path.split('#');
-      // Обрабатываем основную часть URL без якоря
-      const cleanUrlPart = urlPart === '/' ? '' : (urlPart.startsWith('/') ? urlPart.substring(1) : urlPart);
-      // Если базовый путь заканчивается на /, добавляем путь как есть
-      const cleanBase = basePath.endsWith('/') ? basePath : `${basePath}/`;
-      // Возвращаем полный путь с якорем
-      return `${cleanBase}${cleanUrlPart}#${anchorPart}`;
+    // Очищаем входящий путь от дублирования базового пути
+    let cleanPath = path;
+    
+    if (isGitHubPages) {
+      // Удаляем все варианты базового пути из входящего пути
+      cleanPath = path.replace(/^\/myportfolio\//, '/').replace(/^\/myportfolio/, '/');
     }
     
-    // Стандартная обработка для обычных путей
-    // Если путь начинается с /, удаляем его, чтобы избежать дублирования
-    const cleanPath = path.startsWith('/') ? path.substring(1) : path;
-    // Если базовый путь заканчивается на /, добавляем путь как есть
-    const cleanBase = basePath.endsWith('/') ? basePath : `${basePath}/`;
-    return `${cleanBase}${cleanPath}`;
+    // Обработка путей с якорями (#)
+    if (cleanPath.includes('#')) {
+      const [pathPart, anchor] = cleanPath.split('#');
+      if (pathPart === '' || pathPart === '/') {
+        // Если путь пустой или корневой, возвращаем базовый путь с якорем
+        return `${basePath}#${anchor}`;
+      }
+      // Иначе формируем путь с якорем
+      return `${basePath}${pathPart.replace(/^\//, '')}#${anchor}`;
+    }
+    
+    // Нормализация пути: убираем начальный слеш и соединяем с базовым путем
+    if (cleanPath === '/') {
+      return basePath;
+    }
+    
+    return `${basePath}${cleanPath.replace(/^\//, '')}`;
   };
+  
+  return { basePath, getPath };
+}
 
-  return {
-    basePath,
-    getPath,
-    isGitHubPages
-  };
-} 
+export default useBasePath; 
