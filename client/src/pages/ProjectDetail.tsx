@@ -4,14 +4,17 @@ import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { ArrowLeft, ExternalLink, Github } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import useBasePath from "../lib/use-base-path";
 
 const ProjectDetail = () => {
   const [_, params] = useRoute("/project/:id");
   const { t, i18n } = useTranslation();
   const [project, setProject] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const { getPath } = useBasePath();
 
   useEffect(() => {
+    window.scrollTo(0, 0); // Всегда наверх при открытии страницы
     // Find project by id
     if (params?.id) {
       // В реальном приложении мы бы получили данные из API
@@ -57,12 +60,12 @@ const ProjectDetail = () => {
       className="pt-32 pb-20 min-h-screen"
     >
       <div className="container mx-auto px-6">
-        <Link href="/#projects">
-          <Button variant="ghost" className="mb-8 group">
+        <Button asChild variant="ghost" className="mb-8 group">
+          <Link href={getPath("/#projects")}>
             <ArrowLeft className="mr-2 h-4 w-4 transition-transform group-hover:-translate-x-1" />
             {t("projects.backToProjects")}
-          </Button>
-        </Link>
+          </Link>
+        </Button>
         
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
           <div className="lg:col-span-2">

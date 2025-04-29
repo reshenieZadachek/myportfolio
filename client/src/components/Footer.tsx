@@ -19,7 +19,7 @@ const Footer = () => {
   const socialLinks = [
     { icon: <FaTelegram />, href: "https://t.me/DevWebFullstack", label: "Telegram" },
     { icon: <FaGithub />, href: "https://github.com/reshenieZadachek", label: "GitHub" },
-    { icon: <FaEnvelope />, href: "mailto:dv@example.com", label: "Email" },
+    { icon: <FaEnvelope />, href: "mailto:vadim.fullstack@gmail.com", label: "Email" },
   ];
 
   return (

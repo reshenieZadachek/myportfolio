@@ -50,9 +50,11 @@ function Router() {
       
       // Слушаем изменения
       window.addEventListener('popstate', handleLocationChange);
+      window.addEventListener('locationchange', handleLocationChange);
       
       return () => {
         window.removeEventListener('popstate', handleLocationChange);
+        window.removeEventListener('locationchange', handleLocationChange);
       };
     }, []);
     
@@ -71,6 +73,9 @@ function Router() {
       } else {
         window.history.pushState(null, '', newPath);
       }
+      
+      // Уведомляем о смене маршрута через кастомное событие
+      window.dispatchEvent(new Event('locationchange'));
       
       setLocation(to); // Для внутреннего состояния используем оригинальный путь
     };

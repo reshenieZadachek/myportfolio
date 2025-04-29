@@ -116,10 +116,6 @@ const FeaturedProject = ({ project, index }: FeaturedProjectProps) => {
   const { t } = useTranslation();
   const { getPath } = useBasePath();
   
-  const handleDetailsClick = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-  
   return (
     <motion.div 
       className="grid grid-cols-1 md:grid-cols-5 gap-6 bg-gradient-to-br from-muted/5 to-muted/20 rounded-2xl p-6 md:p-8 border border-muted/30 shadow-lg mb-12"
@@ -234,7 +230,7 @@ const FeaturedProject = ({ project, index }: FeaturedProjectProps) => {
           transition={{ duration: 0.4, delay: 0.7 }}
           viewport={{ once: true }}
         >
-          <Button asChild className="group" onClick={handleDetailsClick}>
+          <Button asChild className="group">
             <Link href={getPath(`/project/${project.id}`)}>
               {t("projects.details")}
               <ChevronRight className="ml-1 transition-transform group-hover:translate-x-1" size={16} />
@@ -282,6 +278,7 @@ interface ProjectCardProps {
 
 const ProjectCard = ({ project, index, controls }: ProjectCardProps) => {
   const { t } = useTranslation();
+  const { getPath } = useBasePath();
   const [isHovered, setIsHovered] = useState(false);
   
   return (
@@ -361,7 +358,9 @@ const ProjectCard = ({ project, index, controls }: ProjectCardProps) => {
             transition={{ duration: 0.3, delay: 0.3 }}
           >
             <Button asChild size="sm" variant="secondary">
-              <Link href={`/project/${project.id}`}>{t("projects.viewDetails")}</Link>
+              <Link href={getPath(`/project/${project.id}`)}>
+                {t("projects.viewDetails")}
+              </Link>
             </Button>
             {project.liveUrl && (
               <Button asChild size="sm" variant="outline">
@@ -456,7 +455,7 @@ const ProjectCard = ({ project, index, controls }: ProjectCardProps) => {
           variant="ghost" 
           className="px-2.5 py-1 h-auto text-sm group"
         >
-          <Link href={`/project/${project.id}`} className="flex items-center">
+          <Link href={getPath(`/project/${project.id}`)} className="flex items-center">
             {t("projects.details")}
             <motion.span
               animate={{ x: isHovered ? 4 : 0 }}
