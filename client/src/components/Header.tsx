@@ -10,13 +10,14 @@ import useBasePath from "../lib/use-base-path";
 const Header = () => {
   const [location] = useLocation();
   const { t } = useTranslation();
-  const { getPath } = useBasePath();
+  const { getPath, isGitHubPages } = useBasePath();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
-  // Функция для плавного скролла к секциям
+  // Функция для плавного скролла к секциям с учетом GitHub Pages
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
+    
     if (element) {
       // Дополнительный отступ для хедера
       const headerOffset = 80;
@@ -27,6 +28,14 @@ const Header = () => {
         top: offsetPosition,
         behavior: 'smooth'
       });
+      
+      // Обновляем URL без перезагрузки страницы
+      const newPath = getPath(`/#${id}`);
+      window.history.pushState(null, '', newPath);
+    } else if (isGitHubPages) {
+      // Если элемента нет на текущей странице и мы на GitHub Pages,
+      // возможно мы на странице проекта, нужно перейти на главную страницу
+      window.location.href = getPath(`/#${id}`);
     }
   };
 
@@ -115,12 +124,12 @@ const Header = () => {
                   <a 
                     key={item.href}
                     href={item.href}
-                    className="text-muted-foreground hover:text-foreground"
+                    className="text-muted-foreground hover:text-foreground transition-colors py-2"
                     onClick={(e) => {
                       e.preventDefault();
                       const sectionId = item.href.replace('#', '');
                       scrollToSection(sectionId);
-                      setIsMobileMenuOpen(false);
+                      setIsMobileMenuOpen(false); // Закрываем меню после клика
                     }}
                   >
                     {item.label}

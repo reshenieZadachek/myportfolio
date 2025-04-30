@@ -43,7 +43,7 @@ function useBasePath() {
     return `${basePath}${cleanPath.replace(/^\//, '')}`;
   };
   
-  return { basePath, getPath };
+  return { basePath, getPath, isGitHubPages };
 }
 
 export default useBasePath; 

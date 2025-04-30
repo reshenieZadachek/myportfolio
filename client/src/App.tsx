@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Switch, Route, Router as WouterRouter } from "wouter";
+import { Switch, Route } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
@@ -11,83 +11,17 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import ProjectDetail from "./pages/ProjectDetail";
 import NotFound from "@/pages/not-found";
-import useBasePath from "./lib/use-base-path";
-
-// Тип для хука местоположения wouter
-type LocationHook = () => [
-  string,
-  (to: string, options?: { replace?: boolean }) => void
-];
+import BaseRouter from "./lib/wouter-base-path";
 
 function Router() {
-  // Создаем кастомную реализацию маршрутизации для Wouter
-  // с учетом базового пути для GitHub Pages
-  const useBasedLocation: LocationHook = () => {
-    const [location, setLocation] = useState(window.location.pathname);
-    const isGitHubPages = window.location.hostname.includes('github.io');
-    const basePath = isGitHubPages ? '/myportfolio' : '';
-    
-    useEffect(() => {
-      // Обработка изменения пути
-      const handleLocationChange = () => {
-        let path = window.location.pathname;
-        
-        // Если путь содержит базовый путь, удаляем его для внутреннего роутера
-        if (isGitHubPages && path.startsWith(basePath)) {
-          path = path.substring(basePath.length) || '/';
-        }
-        
-        console.log('Current path:', path); // Для отладки
-        setLocation(path);
-      };
-      
-      // Первичная установка
-      handleLocationChange();
-      
-      // Слушаем изменения
-      window.addEventListener('popstate', handleLocationChange);
-      window.addEventListener('locationchange', handleLocationChange);
-      
-      return () => {
-        window.removeEventListener('popstate', handleLocationChange);
-        window.removeEventListener('locationchange', handleLocationChange);
-      };
-    }, []);
-    
-    // Функция для перехода на новый путь
-    const navigate = (to: string, options?: { replace?: boolean }) => {
-      // Для навигации добавляем базовый путь
-      // Сначала проверяем, что путь не содержит уже basePath
-      let cleanTo = to;
-      if (isGitHubPages) {
-        cleanTo = to.replace(/^\/myportfolio\//, '/').replace(/^\/myportfolio/, '/');
-      }
-      
-      const newPath = isGitHubPages ? `${basePath}${cleanTo}` : cleanTo;
-      
-      if (options?.replace) {
-        window.history.replaceState(null, '', newPath);
-      } else {
-        window.history.pushState(null, '', newPath);
-      }
-      
-      // Уведомляем о смене маршрута через кастомное событие
-      window.dispatchEvent(new Event('locationchange'));
-      
-      setLocation(cleanTo); // Для внутреннего состояния используем чистый путь
-    };
-    
-    return [location, navigate];
-  };
-  
   return (
-    <WouterRouter hook={useBasedLocation}>
+    <BaseRouter>
       <Switch>
         <Route path="/" component={Home} />
         <Route path="/project/:id" component={ProjectDetail} />
         <Route component={NotFound} />
       </Switch>
-    </WouterRouter>
+    </BaseRouter>
   );
 }
 

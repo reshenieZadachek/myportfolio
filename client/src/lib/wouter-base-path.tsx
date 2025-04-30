@@ -7,7 +7,7 @@ import useBasePath from './use-base-path';
  */
 const useBasedLocation: BaseLocationHook = () => {
   // Получаем базовый путь и функцию для создания полных путей
-  const { basePath, getPath } = useBasePath();
+  const { basePath, getPath, isGitHubPages } = useBasePath();
   
   // Инициализация текущего пути
   const [path, setPath] = useState<string>(() => {
@@ -30,24 +30,41 @@ const useBasedLocation: BaseLocationHook = () => {
       setPath(normalizedPath);
     };
 
-    // Слушаем событие изменения истории
+    // Слушаем события изменения истории и кастомное событие изменения локации
     window.addEventListener('popstate', handleLocationChange);
-    return () => window.removeEventListener('popstate', handleLocationChange);
+    window.addEventListener('locationchange', handleLocationChange);
+    
+    return () => {
+      window.removeEventListener('popstate', handleLocationChange);
+      window.removeEventListener('locationchange', handleLocationChange);
+    };
   }, [basePath]);
 
   // Функция для навигации на новый путь
-  const navigate = useCallback((to: string) => {
+  const navigate = useCallback((to: string, options?: { replace?: boolean }) => {
+    // Убираем базовый путь, если он уже есть в URL
+    let cleanTo = to;
+    if (isGitHubPages) {
+      cleanTo = to.replace(/^\/myportfolio\//, '/').replace(/^\/myportfolio/, '/');
+    }
+    
     // Создаем полный путь с учетом базового пути
-    const fullPath = getPath(to);
+    const fullPath = getPath(cleanTo);
     
     // Добавляем новую запись в историю браузера
-    window.history.pushState(null, '', fullPath);
+    if (options?.replace) {
+      window.history.replaceState(null, '', fullPath);
+    } else {
+      window.history.pushState(null, '', fullPath);
+    }
     
-    // Обновляем внутреннее состояние пути
-    // Убираем базовый путь из URL для внутреннего состояния
-    const normalizedPath = to.startsWith('/') ? to : `/${to}`;
+    // Генерируем событие изменения локации для обновления приложения
+    window.dispatchEvent(new Event('locationchange'));
+    
+    // Обновляем внутреннее состояние пути (без базового пути)
+    const normalizedPath = cleanTo.startsWith('/') ? cleanTo : `/${cleanTo}`;
     setPath(normalizedPath);
-  }, [getPath]);
+  }, [getPath, isGitHubPages]);
 
   return [path, navigate];
 };
