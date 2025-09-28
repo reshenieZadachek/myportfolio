@@ -21,8 +21,8 @@ const ContactSection = () => {
     {
       icon: <Mail className="text-primary" />,
       label: t("contact.info.email.label"),
-      value: "contact@developer.com",
-      link: "mailto:contact@developer.com",
+      value: "vadim.fullstack@gmail.com",
+      link: "mailto:vadim.fullstack@gmail.com",
       copyable: true,
       id: "email"
     },
